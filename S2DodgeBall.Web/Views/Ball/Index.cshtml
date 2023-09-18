@@ -1,0 +1,35 @@
+@model BallIndexViewModel
+
+@{
+    ViewBag.Title = "DodgeBall!";
+    Layout = "_Layout";
+}
+
+<h2>DodgeBall!</h2>
+
+<p>You have <span style="color: red">@Model.HealthPoints</span> hp left!</p>
+
+@if (Model.GotHit)
+{
+    <p><strong>Oh no, you dodged to the @Model.Direction! You got hit!</strong></p>
+}
+
+@if (Model.DidDodge)
+{
+    <p><strong>Good job, you dodged!</strong></p>
+}
+
+<p>Your opponent is about to throw! Do you dodge left or right?</p>
+
+<form method="post">
+    @Html.HiddenFor(m => m.HealthPoints)
+    <label>
+        left
+        <input type="radio" name="direction" value="left">
+    </label>
+    <label>
+        right
+        <input type="radio" name="direction" value="right">
+    </label>
+    <button type="submit">Go!</button>
+</form>
